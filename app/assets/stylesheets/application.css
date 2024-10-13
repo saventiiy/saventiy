@@ -14,4 +14,7 @@
  *= require_self
  */
 
- 
+ .clickable-div a {
+    color: black;          /* Inherit color from parent */
+    text-decoration: none;   /* Remove underline */
+  }

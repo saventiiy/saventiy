@@ -1,18 +1,23 @@
 <div style="text-align: center;">
   <p style="color: green"><%= notice %></p>
-<%= image_tag "tech_cross.png" %>
+  <%= image_tag "tech_cross.png", style: "width: 35%; height: 35%; object-fit: cover;" %>
+
   <p>Saventiy's jorney</p>
 <h1>Posts</h1>
-
-<div id="posts">
   <% @posts.each do |post| %>
-    <%= render post %>
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
+  <div class="clickable-div">
+    <%= link_to post do %>
+        <p>
+          <strong><%= post.title %></strong>
+        </p>
+        <p><%= post.description %></p>
+    <% end %>
+    </div>
+    <hr style="width: 10%">
   <% end %>
-</div>
 
-<%= link_to "New post", new_post_path %>
-
+  <% if admin_signed_in? %>
+    <%= link_to "New post", new_post_path %>
+    <%= link_to "Sing out", destroy_admin_session_path, data: { turbo_method: :delete, turbo: true } %>
+  <% end %>
 </div>
